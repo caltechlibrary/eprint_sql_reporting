@@ -5,7 +5,7 @@ PROJECT = eprint_sql_reporting
 
 PROGRAMS = $(shell ls -1 cmd)
 
-BASH_SCRIPTS = $(shell ls -1 *-eprints-*.bash)
+BASH_SCRIPTS = $(shell ls -1 *.bash)
 
 MAN_PAGES = $(shell ls -1 *.1.md | sed -E 's/\.1.md/.1/g')
 
@@ -103,9 +103,7 @@ clean:
 	@if [ -d testout ]; then rm -fR testout; fi
 
 clean-website:
-	@for FNAME in $(shell find docs -type f | grep '.html'); do rm $$FNAME; done
-	@for FNAME in $(shell find examples -type f | grep '.html'); do rm $$FNAME; done
-	@for FNAME in index.html install.html license.html; do if [ -f $$FNAME ]; then rm $$FNAME; fi; done
+	@for FNAME in $(shell find . -type f | grep '.html'); do rm $$FNAME; done
 
 install: build
 	@echo "Installing programs in $(PREFIX)/bin"

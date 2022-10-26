@@ -8,7 +8,7 @@
     "issueTracker": "https://github.com/caltechlibrary/eprint_sql_reporting/issues",
     "name": "eprint_sql_reporting",
     "version": "0.0.0",
-    "description": "This is an ad-hoc collection of Go programs and examples for working with an EPrints 3.x repository's MySQL data.",
+    "description": "This is an ad-hoc collection of Go programs and Bash scripts working with EPrints 3.x repositories via MySQL database tables",
     "applicationCategory": "data mining, eprints",
     "releaseNotes": "This is just a proof of concept collection demonstrating the easy of creating simple CLI to do data analysis on EPrints content via the MySQL 8 database and client.",
     "developmentStatus": "concept",

@@ -3,8 +3,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "eprint_sql_reporting"
-abstract: "This is an ad-hoc collection of Go programs and examples for
-working with an EPrints 3.x repository’s MySQL data."
+abstract: "This is an ad-hoc collection of Go programs and Bash scripts
+working with EPrints 3.x repositories via MySQL database tables"
 authors:
   - family-names: Doiel
     given-names: R. S.
@@ -26,8 +26,8 @@ About this software
 
 - R. S. Doiel
 
-This is an ad-hoc collection of Go programs and examples for working
-with an EPrints 3.x repository’s MySQL data.
+This is an ad-hoc collection of Go programs and Bash scripts working
+with EPrints 3.x repositories via MySQL database tables
 
 
 - License: https://spdx.org/licenses/BSD-3-Clause-Clear

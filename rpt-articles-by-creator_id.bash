@@ -25,10 +25,10 @@ my the MySQL database for an EPrints 3.x repository.
 # EXAMPLE
 
 ~~~
-    ${APP_NAME} "GPS_Faculty_ORCIDS - Sheet1.csv" 1 \
-        >GPS_Fuculty_Articles.csv
+    ${APP_NAME} "GPS_Faculty_ORCIDS - Sheet1.csv" 1
 ~~~
 
+The resulting report is "eprintid_pub_type.csv".
 
 EOT
 

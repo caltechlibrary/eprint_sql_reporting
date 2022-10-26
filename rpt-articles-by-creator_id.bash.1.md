@@ -19,7 +19,8 @@ my the MySQL database for an EPrints 3.x repository.
 # EXAMPLE
 
 ~~~
-    rpt-articles-by-creator_id.bash "GPS_Faculty_ORCIDS - Sheet1.csv" 1         >GPS_Fuculty_Articles.csv
+    rpt-articles-by-creator_id.bash "GPS_Faculty_ORCIDS - Sheet1.csv" 1
 ~~~
 
+The resulting report is "eprintid_pub_type.csv".
 

@@ -15,6 +15,7 @@ $(HTML_PAGES): $(MD_PAGES) .FORCE
 	if [ -f $(PANDOC) ]; then $(PANDOC) --metadata title=$(basename $@) -s --to html5 $(basename $@).md -o $(basename $@).html \
 	    --template=page.tmpl; fi
 	@if [ $@ = "README.html" ]; then mv README.html index.html; fi
+	@if [ $@ = "INSTALL.html" ]; then mv "INSTALL.html" "install.html"; fi
 
 clean:
 	@if [ -f index.html ]; then rm *.html; fi

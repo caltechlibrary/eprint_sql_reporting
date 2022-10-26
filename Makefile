@@ -90,7 +90,7 @@ refresh:
 publish: build save
 	git checkout gh-pages
 	git pull origin $(BRANCH)
-	$(MK_WEBSITE)
+	make -f website.mak
 	git commit -am "publishing website"
 	git push origin gh-pages
 	git checkout $(BRANCH)

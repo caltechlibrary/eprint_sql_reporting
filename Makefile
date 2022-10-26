@@ -5,7 +5,7 @@ PROJECT = eprint_sql_reporting
 
 PROGRAMS = $(shell ls -1 cmd)
 
-BASH_SCRIPTS = $(shell ls -1 *-eprints-*.bash)
+BASH_SCRIPTS = $(shell ls -1 *.bash)
 
 MAN_PAGES = $(shell ls -1 *.1.md | sed -E 's/\.1.md/.1/g')
 

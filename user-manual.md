@@ -19,5 +19,4 @@ Bash scripts
 Reports
 -------
 
-- [rpt-articles-by-creators.bash](rpt-articles-by-creators.bash.1.html)
-
+- [articlesby creator id](rpt-articles-by-creator_id.bash.1.html)

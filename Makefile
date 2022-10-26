@@ -92,7 +92,7 @@ publish: website save
 	git pull origin $(BRANCH)
 	make -f website.mak
 	git commit -am "publishing website"
-	git push origin gh-pages
+	-git push origin gh-pages
 	git checkout $(BRANCH)
 
 clean:

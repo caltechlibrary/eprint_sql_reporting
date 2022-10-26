@@ -53,7 +53,7 @@ in the column called "Name". Here's the steps to produce the report.
     > creator_ids.sql
 
 mysql caltechauthors --batch --skip-column-names < creator_ids.sql | \
-   sort -a >eprint_ids.txt
+   sort -n -u >eprint_ids.txt
 wc -l eprint_ids.txt
 ~~~
 

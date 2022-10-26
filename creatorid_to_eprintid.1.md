@@ -37,7 +37,7 @@ creatorid_to_eprintid "GPS_Faculty_ORCIDS - Sheet1.csv" 1 \
     > creator_ids.sql
 
 mysql caltechauthors --batch --skip-column-names < creator_ids.sql | \
-   sort -a >eprint_ids.txt
+   sort -u >eprint_ids.txt
 wc -l eprint_ids.txt
 ~~~
 
@@ -54,3 +54,4 @@ mysql caltechauthors --batch --skip-column-names <eprintid_pub_types.sql |\
 This last step will produce a CSV file with one eprint record per line
 with the eprintid, article title, doi, publicatin type, publication date.
 
+creatorid_to_eprintid 0.0.0

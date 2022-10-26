@@ -103,9 +103,7 @@ clean:
 	@if [ -d testout ]; then rm -fR testout; fi
 
 clean-website:
-	@for FNAME in $(shell find docs -type f | grep '.html'); do rm $$FNAME; done
-	@for FNAME in $(shell find examples -type f | grep '.html'); do rm $$FNAME; done
-	@for FNAME in index.html install.html license.html; do if [ -f $$FNAME ]; then rm $$FNAME; fi; done
+	@for FNAME in $(shell find . -type f | grep '.html'); do rm $$FNAME; done
 
 install: build
 	@echo "Installing programs in $(PREFIX)/bin"

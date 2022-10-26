@@ -110,10 +110,17 @@ install: build
 	@for FNAME in $(PROGRAMS); do if [ -f "./bin/$${FNAME}$(EXT)" ]; then cp -v "./bin/$${FNAME}$(EXT)" "$(PREFIX)/bin/$${FNAME}$(EXT)"; fi; done
 	@echo ""
 	@echo "Make sure $(PREFIX)/bin is in your PATH"
+	@echo "Installing man pages in $(PREFIX)/man"
+	@mkdir -p $(PREFIX)/man/man1
+	@for FNAME in $(MAN_PAGES); do if [ -f "./man/man1/$${FNAME}" ]; then cp -v "./man/man1/$${FNAME}" "$(PREFIX)/man/man1/$${FNAME}"; fi; done
+	@echo ""
+	@echo "Make sure $(PREFIX)/man is in your MANPATH"
 
 uninstall: .FORCE
 	@echo "Removing programs in $(PREFIX)/bin"
 	@for FNAME in $(PROGRAMS); do if [ -f "$(PREFIX)/bin/$${FNAME}$(EXT)" ]; then rm -v "$(PREFIX)/bin/$${FNAME}$(EXT)"; fi; done
+	@echo "Removing man pages in $(PREFIX)/man"
+	@for FNAME in $(MAN_PAGES); do if [ -f "$(PREFIX)/man/man1/$${FNAME}" ]; then rm -v "$(PREFIX)/man/man1/$${FNAME}"; fi; done
 
 
 dist/linux-amd64: $(PROGRAMS)

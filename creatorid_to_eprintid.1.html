@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EPrint SQL Reporting (Concept)</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+<header>
+<a href="http://library.caltech.edu" title="link to Caltech Library Homepage"><img src="/assets/liblogo.gif" alt="Caltech Library logo"></a>
+</header>
+<nav>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="index.html">README</a></li>
+    <li><a href="LICENSE">LICENSE</a></li>
+    <li><a href="install.html">INSTALL</a></li>
+    <li><a href="user-manual.html">User Manual</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://github.com/caltechlibrary/eprint-sql-reporting">GitHub</a></li>
+</ul>
+</nav>
+
+<section>
+<h1 id="name">NAME</h1>
+<p>creatorid_to_eprintid</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>creatorid_to_eprintid CSV_FILENAME COL_NUMBER_OF_ID</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The program will generate a SQL statements for matching a spreadsheet
+with a “Name” column to the author id in CaltechAUTHOR’s
+eprint_creators_id table. This can be then passed via mysql client to
+generate a tab delimited file if eprintid that next be passeed through
+the Unix sort command to produce a list of unique eprint id for a group
+of authors.</p>
+<p>The CSV_FILENAME should be the name of the file containing the author
+ids. COL_NUMBER_OF_ID is the column number (1 is initial column) holding
+the author_id.</p>
+<h1 id="options">OPTIONS</h1>
+<dl>
+<dt>-help</dt>
+<dd>
+display this help page.
+</dd>
+</dl>
+<h1 id="example">EXAMPLE</h1>
+<p>CSV file called “GPS_Faculty_ORCIDS - Sheet1.csv”, the author id is
+in the column called “Name”. Here’s the steps to produce the report.</p>
+<pre><code>creatorid_to_eprintid &quot;GPS_Faculty_ORCIDS - Sheet1.csv&quot; 1 \
+    &gt; creator_ids.sql
+
+mysql caltechauthors --batch --skip-column-names &lt; creator_ids.sql | \
+   sort -a &gt;eprint_ids.txt
+wc -l eprint_ids.txt</code></pre>
+<p>This leaves you author a list of eprint ids related to all the
+authors in the CSV file. You need to filter these one step further if
+you are interested in publication type.</p>
+<p>~~~ eprintid_pub_types eprint_ids.txt &gt;eprint_pub_types.sql mysql
+caltechauthors –batch –skip-column-names &lt;eprintid_pub_types.sql
+|<br />
+&gt;eprintid_pub_types.tsv ~~</p>
+<p>This last step will produce a CSV file with one eprint record per
+line with the eprintid, article title, doi, publicatin type, publication
+date.</p>
+</section>
+
+<footer>
+<span>&copy; 2022 <a href="https://www.library.caltech.edu/copyright">Caltech Library</a></span>
+<address>1200 E California Blvd, Mail Code 1-32, Pasadena, CA 91125-3200</address>
+<span><a href="mailto:library@caltech.edu">Email Us</a></span>
+<span>Phone: <a href="tel:+1-626-395-3405">(626)395-3405</a></span>
+</footer>
+</body>
+</html>

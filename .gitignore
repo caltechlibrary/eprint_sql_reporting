@@ -1,0 +1,11 @@
+*~
+*.bak
+*.tmp
+*.csv
+*.tsv
+*.tab
+*.sql
+_*.json
+bin
+sql-dumps
+eprint*.txt

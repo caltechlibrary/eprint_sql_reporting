@@ -1,0 +1,51 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "license": "https://spdx.org/licenses/BSD-3-Clause-Clear",
+    "codeRepository": "https://github.com/caltechlibrary/eprint_sql_reporting",
+    "dateCreated": "2022-10-26",
+    "datePublished": "2022-10-26",
+    "issueTracker": "https://github.com/caltechlibrary/eprint_sql_reporting/issues",
+    "name": "eprint_sql_reporting",
+    "version": "0.0.0",
+    "description": "This is an ad-hoc collection of Go programs and examples for working with an EPrints 3.x repository's MySQL data.",
+    "applicationCategory": "data mining, eprints",
+    "releaseNotes": "This is just a proof of concept collection demonstrating the easy of creating simple CLI to do data analysis on EPrints content via the MySQL 8 database and client.",
+    "developmentStatus": "concept",
+    "funder": {
+        "@type": "Organization",
+        "name": "Caltech Library"
+    },
+    "keywords": [
+        "eprints",
+        "\"data analysis\""
+    ],
+    "programmingLanguage": [
+        "Go",
+        "SQL"
+    ],
+    "operatingSystem": [
+        "Linux",
+        "Windows",
+        "macOS"
+    ],
+    "softwareRequirements": [
+        "Go 1.19.2 or better",
+        "Bash",
+        "Make",
+        "mysql 8 client"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0003-0900-6903",
+            "givenName": "R. S.",
+            "familyName": "Doiel",
+            "email": "rsdoiel@caltech.edu",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Caltech Library"
+            }
+        }
+    ]
+}

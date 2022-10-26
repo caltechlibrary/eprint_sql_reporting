@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EPrint SQL Reporting (Concept)</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+<header>
+<a href="http://library.caltech.edu" title="link to Caltech Library Homepage"><img src="/assets/liblogo.gif" alt="Caltech Library logo"></a>
+</header>
+<nav>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="index.html">README</a></li>
+    <li><a href="LICENSE">LICENSE</a></li>
+    <li><a href="install.html">INSTALL</a></li>
+    <li><a href="user-manual.html">User Manual</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://github.com/caltechlibrary/eprint-sql-reporting">GitHub</a></li>
+</ul>
+</nav>
+
+<section>
+<h1 id="name">NAME</h1>
+<p>eprintid_pub_types</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>eprintid_pub_types EPRINT_ID_LIST</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The program will generate a SQL statements to produce a list of
+eprint records containing eprintid, title, doi, publication type and pub
+date. It is suitable to process via the mysql client and rendering a tab
+delimited file result.</p>
+<p>The EPRINT_ID_LIST should have only eprintid one per line.</p>
+<h1 id="options">OPTIONS</h1>
+<dl>
+<dt>-help</dt>
+<dd>
+display this help page.
+</dd>
+</dl>
+<h1 id="example">EXAMPLE</h1>
+<p>Process the eprint id list and produce a report of eprintid
+containing their title, doi, publication type and publication date.</p>
+<pre><code>eprintid_pub_types eprint_id_list.txt \
+    &gt; eprintid_report.sql
+
+mysql caltechauthors --batch &lt; eprintid_pub_type_report.sql | \
+   &gt; eprintid_pub_type_report.tsv
+grep &#39;\tarticle\t&#39; &lt;eprint_pub_type_report.tsv| wc -l</code></pre>
+</section>
+
+<footer>
+<span>&copy; 2022 <a href="https://www.library.caltech.edu/copyright">Caltech Library</a></span>
+<address>1200 E California Blvd, Mail Code 1-32, Pasadena, CA 91125-3200</address>
+<span><a href="mailto:library@caltech.edu">Email Us</a></span>
+<span>Phone: <a href="tel:+1-626-395-3405">(626)395-3405</a></span>
+</footer>
+</body>
+</html>

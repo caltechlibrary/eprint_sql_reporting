@@ -3,11 +3,19 @@
 function usage() {
     APP_NAME=$(basename "$0")
     cat <<EOF
-USAGE
+% ${APP_NAME}(1) user manual
+% R. S. Doiel
+% 2022-10-26
 
-   ${APP_NAME} REPOSITORY_ID
+# NAME
 
-SYNOPSIS
+${APP_NAME}
+
+# SYNOPSIS
+
+${APP_NAME} REPOSITORY_ID
+
+# DESCRIPTION
 
 This script dumps an EPrints repository including only the tables useful
 for development externally to EPrints. It explicitly excludes tables only
@@ -18,15 +26,19 @@ or request. These dumps are NOT BACKUPS!
 It saves the files in a "sql-dumps" directory with the name form of
 REPOSITORY_ID dash dump dash date string period "sql".
 
-EXAMPLE
+# EXAMPLE
 
 Running the command on Sept. 9, 2021
 
-	${APP_NAME} caltechauthors
+~~~
+    ${APP_NAME} caltechauthors
+~~~
 
 This would generate a dump for development use as
 
-        sql-dumps/caltechchauthors-2021-09-29.sql
+~~~
+    sql-dumps/caltechchauthors-2021-09-29.sql.gz
+~~~
 
 EOF
 

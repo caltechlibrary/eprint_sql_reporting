@@ -3,7 +3,7 @@
 function usage() {
     APP_NAME=$(basename "$0")
     cat <<EOT
-%${APP_NAME}(1) user manual
+% ${APP_NAME}(1) user manual
 % R. S. Doiel
 % 2022-10-20
 
@@ -20,9 +20,11 @@ ${APP_NAME} REPO_ID YYYY-MM-DD
 Load a snapshot of the EPrints database replacing the existing database
 if necessary.
 
-# EXAMPLES
+# EXAMPLE
 
+~~~
     ${APP_NAME} caltechthesis 2022-10-20
+~~~
 
 EOT
 

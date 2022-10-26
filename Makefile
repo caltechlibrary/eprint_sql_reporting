@@ -5,6 +5,8 @@ PROJECT = eprint_sql_reporting
 
 PROGRAMS = $(shell ls -1 cmd)
 
+BASH_SCRIPTS = $(shell ls -1 *-eprints-*.bash)
+
 MAN_PAGES = $(shell ls -1 *.1.md | sed -E 's/\.1.md/.1/g')
 
 PACKAGE = $(shell ls -1 *.go)
@@ -110,6 +112,8 @@ install: build
 	@for FNAME in $(PROGRAMS); do if [ -f "./bin/$${FNAME}$(EXT)" ]; then cp -v "./bin/$${FNAME}$(EXT)" "$(PREFIX)/bin/$${FNAME}$(EXT)"; fi; done
 	@echo ""
 	@echo "Make sure $(PREFIX)/bin is in your PATH"
+	@echo "Install Bash scripts in $(PREFIX)/bin"
+	@for FNAME in $(BASH_SCRIPTS); do if [ -f "./$${FNAME}" ]; then cp -v "./$${FNAME}" "$(PREFIX)/bin/$${FNAME}"; fi; done
 	@echo "Installing man pages in $(PREFIX)/man"
 	@mkdir -p $(PREFIX)/man/man1
 	@for FNAME in $(MAN_PAGES); do if [ -f "./man/man1/$${FNAME}" ]; then cp -v "./man/man1/$${FNAME}" "$(PREFIX)/man/man1/$${FNAME}"; fi; done
@@ -119,6 +123,8 @@ install: build
 uninstall: .FORCE
 	@echo "Removing programs in $(PREFIX)/bin"
 	@for FNAME in $(PROGRAMS); do if [ -f "$(PREFIX)/bin/$${FNAME}$(EXT)" ]; then rm -v "$(PREFIX)/bin/$${FNAME}$(EXT)"; fi; done
+	@echo "Removing Bash script in $(PREFIX)/bin"
+	@for FNAME in $(BASH_SCRIPTS); do if [ -f "$(PREFIX)/bin/$${FNAME}" ]; then rm -v "$(PREFIX)/bin/$${FNAME}"; fi; done
 	@echo "Removing man pages in $(PREFIX)/man"
 	@for FNAME in $(MAN_PAGES); do if [ -f "$(PREFIX)/man/man1/$${FNAME}" ]; then rm -v "$(PREFIX)/man/man1/$${FNAME}"; fi; done
 

@@ -12,5 +12,5 @@ authors:
 repository-code: "https://github.com/caltechlibrary/eprint_sql_reporting"
 version: 0.0.0
 license-url: "https://spdx.org/licenses/BSD-3-Clause-Clear"
-keywords: [ "eprints", "“data analysis”" ]
+keywords: [ "eprints", "data analysis" ]
 date-released: 2022-10-26

@@ -2,7 +2,7 @@
 User manual
 ===========
 
-- [Overview](index.html)
+- [Overview](overview.html)
 
 CLI
 ---

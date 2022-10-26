@@ -23,17 +23,25 @@
 
 <section>
 <h1 id="eprint-sql-reporting">eprint SQL reporting</h1>
-<p>A selection of Go base CLI to generate SQL programs for data cleaning
-and analysis of EPrints 3.x based repositories.</p>
+<p>This repository holds a collection of Go cli (go programs you can run
+from the command line) and a set of Bash scripts for working with
+EPrints 3.x a the MySQL database level. In some cases the Bash scripts
+may include the use of tools from the <a
+href="https://github.com/caltechlibrary/datatools/latest/release">datatools
+project</a>. Bash scripts that interact with MySQL 8 do so via the
+<code>mysql</code> client. The cli provided tend to generate SQL
+documents that can be run in the MySQL 8 client. The output from the
+client is then processed with common POSIX utilities (e.g. grep, sort,
+sed) and may service as input for the next stage of processing.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>go &gt;= 1.19.2</li>
 <li>mysql 8 client</li>
 <li>make (e.g. GNU Make)</li>
+<li>Pandoc &gt;= 2.19 (for generating HTML and man pages)</li>
 <li>bash</li>
-<li>Pandoc (for generating documentation in HTML and man pages)</li>
 </ul>
-<p>To run report examples you will also need to have the <a
+<p>To run report examples you many also need to have the <a
 href="https://github.com/caltechlibrary/datatools/latest/release">datatools</a>
 cli installed.</p>
 <h2 id="more-info">More info</h2>

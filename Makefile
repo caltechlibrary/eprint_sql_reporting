@@ -87,7 +87,7 @@ refresh:
 	git fetch origin
 	git pull origin $(BRANCH)
 
-publish: build save
+publish: website save
 	git checkout gh-pages
 	git pull origin $(BRANCH)
 	make -f website.mak

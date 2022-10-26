@@ -42,12 +42,14 @@ display this help page.
 <h1 id="example">EXAMPLE</h1>
 <p>Process the eprint id list and produce a report of eprintid
 containing their title, doi, publication type and publication date.</p>
-<pre><code>eprintid_pub_types eprint_id_list.txt \
-    &gt; eprintid_report.sql
+<pre><code>eprintid_pub_types eprint_ids.txt \
+    &gt; eprintid_pub_type.sql
 
-mysql caltechauthors --batch &lt; eprintid_pub_type_report.sql | \
-   &gt; eprintid_pub_type_report.tsv
+mysql caltechauthors --batch --skip-column-names \
+    &lt; eprintid_pub_type.sql &gt;eprints_pub_type.tsv
+
 grep &#39;\tarticle\t&#39; &lt;eprint_pub_type_report.tsv| wc -l</code></pre>
+<p>eprintid_pub_types 0.0.0</p>
 </section>
 
 <footer>

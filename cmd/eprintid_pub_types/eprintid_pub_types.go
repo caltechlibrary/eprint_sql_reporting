@@ -44,11 +44,12 @@ Process the eprint id list and produce a report of eprintid containing
 their title, doi, publication type and publication date.
 
 ~~~
-{app_name} eprint_id_list.txt \
-    > eprintid_report.sql
+{app_name} eprint_ids.txt \
+    > eprintid_pub_type.sql
 
-mysql caltechauthors --batch < eprintid_pub_type_report.sql | \
-   > eprintid_pub_type_report.tsv
+mysql caltechauthors --batch --skip-column-names \
+    < eprintid_pub_type.sql >eprints_pub_type.tsv
+
 grep '\tarticle\t' <eprint_pub_type_report.tsv| wc -l
 ~~~
 
@@ -103,7 +104,7 @@ func main() {
 		if eprintid == "" {
 			fmt.Fprintf(os.Stderr, "WARNING: skipping line %d, not data.\n", i)
 		} else {
-			fmt.Printf("SELECT eprintid, title, doi, type AS publication_type, IF(date_type = 'pub', CONCAT(date_year, '-', date_month, '-', date_day), '') AS publication_date FROM eprint WHERE eprintid = %q;\n", eprintid)
+			fmt.Printf("SELECT eprintid, title, IFNULL(doi, '') AS doi, IFNULL(type, '') AS publication_type, IF(date_type = 'pub', CONCAT(date_year, '-', date_month, '-', date_day), '') AS publication_date FROM eprint WHERE eprintid = %q;\n", eprintid)
 		}
 	}
 }

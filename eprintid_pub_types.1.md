@@ -30,12 +30,14 @@ Process the eprint id list and produce a report of eprintid containing
 their title, doi, publication type and publication date.
 
 ~~~
-eprintid_pub_types eprint_id_list.txt \
-    > eprintid_report.sql
+eprintid_pub_types eprint_ids.txt \
+    > eprintid_pub_type.sql
 
-mysql caltechauthors --batch < eprintid_pub_type_report.sql | \
-   > eprintid_pub_type_report.tsv
+mysql caltechauthors --batch --skip-column-names \
+    < eprintid_pub_type.sql >eprints_pub_type.tsv
+
 grep '\tarticle\t' <eprint_pub_type_report.tsv| wc -l
 ~~~
 
 
+eprintid_pub_types 0.0.0

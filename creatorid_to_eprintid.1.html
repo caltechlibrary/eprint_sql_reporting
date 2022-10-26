@@ -50,7 +50,7 @@ in the column called “Name”. Here’s the steps to produce the report.</p>
     &gt; creator_ids.sql
 
 mysql caltechauthors --batch --skip-column-names &lt; creator_ids.sql | \
-   sort -a &gt;eprint_ids.txt
+   sort -u &gt;eprint_ids.txt
 wc -l eprint_ids.txt</code></pre>
 <p>This leaves you author a list of eprint ids related to all the
 authors in the CSV file. You need to filter these one step further if
@@ -62,6 +62,7 @@ caltechauthors –batch –skip-column-names &lt;eprintid_pub_types.sql
 <p>This last step will produce a CSV file with one eprint record per
 line with the eprintid, article title, doi, publicatin type, publication
 date.</p>
+<p>creatorid_to_eprintid 0.0.0</p>
 </section>
 
 <footer>

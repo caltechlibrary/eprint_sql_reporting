@@ -41,13 +41,16 @@ their title, doi, publication type and publication date.
 .IP
 .nf
 \f[C]
-eprintid_pub_types eprint_id_list.txt \[rs]
-    > eprintid_report.sql
+eprintid_pub_types eprint_ids.txt \[rs]
+    > eprintid_pub_type.sql
 
-mysql caltechauthors --batch < eprintid_pub_type_report.sql | \[rs]
-   > eprintid_pub_type_report.tsv
+mysql caltechauthors --batch --skip-column-names \[rs]
+    < eprintid_pub_type.sql >eprints_pub_type.tsv
+
 grep \[aq]\[rs]tarticle\[rs]t\[aq] <eprint_pub_type_report.tsv| wc -l
 \f[R]
 .fi
+.PP
+eprintid_pub_types 0.0.0
 .SH AUTHORS
 R. S. Doiel.

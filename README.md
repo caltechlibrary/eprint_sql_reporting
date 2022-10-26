@@ -14,6 +14,12 @@ Requirements
 - bash
 - Pandoc (for generating documentation in HTML and man pages)
 
+To run report examples you will also need to have the
+[datatools](https://github.com/caltechlibrary/datatools/latest/release) cli installed.
+
+More info
+---------
+
 Documentation provided in the [user manual](user-manual.html)
 
 See [about](about.html) for credits

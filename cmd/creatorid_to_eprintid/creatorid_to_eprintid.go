@@ -64,11 +64,13 @@ are interested in publication type.
 ~~~
 eprintid_pub_types eprint_ids.txt >eprint_pub_types.sql
 mysql caltechauthors --batch --skip-column-names <eprintid_pub_types.sql |\
-   >eprintid_pub_types.tsv
+   | tab2csv | eprintid_pub_types.csv
 ~~
 
 This last step will produce a CSV file with one eprint record per line
 with the eprintid, article title, doi, publicatin type, publication date.
+
+NOTE: this example uses tab2csv from datatools project.
 `
 )
 

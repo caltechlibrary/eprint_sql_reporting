@@ -31,7 +31,7 @@ for a set of eprintid.
 
 The EPRINT_ID_LIST should have only eprintid one per line. The
 local group name applied is provided in the command line (i.e.
-GROU_NAME above)
+GROUP_NAME above)
 
 # OPTIONS
 

@@ -79,7 +79,7 @@ website: clean-website
 status:
 	git status
 
-save:
+save: .FORCE
 	@if [ "$(msg)" != "" ]; then git commit -am "$(msg)"; else git commit -am "Quick Save"; fi
 	git push origin $(BRANCH)
 
@@ -87,7 +87,7 @@ refresh:
 	git fetch origin
 	git pull origin $(BRANCH)
 
-publish: website save
+publish: man website save
 	git checkout gh-pages
 	-git pull origin $(BRANCH)
 	make -f website.mak

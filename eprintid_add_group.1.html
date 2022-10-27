@@ -22,29 +22,39 @@
 </nav>
 
 <section>
-<h1 id="user-manual">User manual</h1>
-<ul>
-<li><a href="overview.html">Overview</a></li>
-</ul>
-<h2 id="cli">CLI</h2>
-<ul>
-<li><a href="creatorid_to_eprintid.1.html">creator id to eprint
-id</a></li>
-<li><a href="eprintid_pub_type.1.html">eprint id pub type</a></li>
-<li><a href="eprintid_add_group.1.html">eprint id add group</a></li>
-</ul>
-<h2 id="bash-scripts">Bash scripts</h2>
-<ul>
-<li><a href="dump-eprints-records.bash.1.html">dump eprint
-records</a></li>
-<li><a href="load-eprints-dump.bash.1.html">load eprints dump</a></li>
-</ul>
-<h2 id="reports">Reports</h2>
-<ul>
-<li><a href="rpt-articles-by-creator_id.bash.1.html">articles by creator
-id</a></li>
-<li><a href="rpt-related_urls.bash.1.html">related urls</a></li>
-</ul>
+<h1 id="name">NAME</h1>
+<p>eprintid_add_group</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>eprintid_add_group EPRINT_ID_LIST GROUP_NAME</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The program will generate a SQL statements to add a local_group for a
+set of eprintid.</p>
+<p>The EPRINT_ID_LIST should have only eprintid one per line. The local
+group name applied is provided in the command line (i.e. GROU_NAME
+above)</p>
+<h1 id="options">OPTIONS</h1>
+<dl>
+<dt>-help</dt>
+<dd>
+display this help page.
+</dd>
+<dt>-license</dt>
+<dd>
+display software license
+</dd>
+<dt>-version</dt>
+<dd>
+display version
+</dd>
+</dl>
+<h1 id="example">EXAMPLE</h1>
+<p>Process the eprint id list and the group name “Astronomy Department”
+updated the eprint table appropriately.</p>
+<pre><code>eprintid_add_group eprint_ids.txt &quot;Astronomy Department&quot; \
+    &gt; eprintid_add_group.sql
+
+mysql caltechauthors &lt; eprintid_add_group.sql</code></pre>
+<p>eprintid_add_group 0.0.0</p>
 </section>
 
 <footer>

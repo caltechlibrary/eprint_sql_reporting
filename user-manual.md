@@ -9,6 +9,7 @@ CLI
 
 - [creator id to eprint id](creatorid_to_eprintid.1.html)
 - [eprint id pub type](eprintid_pub_type.1.html)
+- [eprint id add group](eprintid_add_group.1.html)
 
 Bash scripts
 ------------

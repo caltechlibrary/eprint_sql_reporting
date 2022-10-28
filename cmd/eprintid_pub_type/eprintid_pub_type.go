@@ -106,7 +106,8 @@ func main() {
 		if eprintid == "" {
 			fmt.Fprintf(os.Stderr, "WARNING: skipping line %d, not data.\n", i)
 		} else {
-			fmt.Printf("SELECT eprintid, QUOTE(title), QUOTE(IFNULL(doi, '')) AS doi, QUOTE(IFNULL(type, '')) AS publication_type, QUOTE(IFNULL(date_type, '')) AS date_type, QUOTE(IFNULL(CONCAT(LPAD(date_year,4,'0'), '-', LPAD(date_month,2,'0'), '-', LPAD(date_day, 2,'0')), '')) AS date FROM eprint WHERE eprintid = %q;\n", eprintid)
+			fmt.Printf(`SELECT eprintid, title, IFNULL(doi, '') AS doi, IFNULL(type, '') AS publication_type, IFNULL(date_type, '') AS date_type, IFNULL(CONCAT(LPAD(date_year,4,'0'), '-', LPAD(date_month,2,'0'), '-', LPAD(date_day, 2,'0')), '') AS date FROM eprint WHERE eprintid = %q;
+`, eprintid)
 		}
 	}
 }

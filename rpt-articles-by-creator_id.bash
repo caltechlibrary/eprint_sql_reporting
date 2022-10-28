@@ -28,7 +28,8 @@ my the MySQL database for an EPrints 3.x repository.
     ${APP_NAME} "GPS_Faculty_ORCIDS - Sheet1.csv" 1
 ~~~
 
-The resulting report is "eprintid_pub_type.csv".
+The resulting report is "eprintid_pub_type.csv" and
+"eprintid_pub_type.tsv".
 
 EOT
 
@@ -48,10 +49,18 @@ function build_report() {
     echo "Generating eprintid_pub_type.sql"
     eprintid_pub_type eprint_ids.txt >eprintid_pub_type.sql
     echo "Generating csv of eprintid and publication type"
-    printf "'eprintid','title','doi','publication_type','date_type','date'\n" >eprintid_pub_type.csv
+    printf '"eprintid","title","doi","publication_type","date_type","date"\n' >eprintid_pub_type.csv
     mysql caltechauthors --batch --skip-column-names \
-            < eprintid_pub_type.sql | sed -E 's/\t/,/g' >> eprintid_pub_type.csv
-    grep -E "2022|2021|2020|2019|2018|2017|2016|2015|2014|2013|2012" eprintid_pub_type.csv | grep ",'article'," | wc -l
+            < eprintid_pub_type.sql | \
+			sed -E "s/'/\'/;s/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g" \
+			>> eprintid_pub_type.csv
+    grep -E "2022|2021|2020|2019|2018|2017|2016|2015|2014|2013|2012" \
+		eprintid_pub_type.csv | grep ',"article",' | wc -l
+
+    printf "eprintid\ttitle\tdoi\tpublication_type\tdate_type\tdate\n" >eprintid_pub_type.tsv
+    mysql caltechauthors --batch --skip-column-names \
+            < eprintid_pub_type.sql >> eprintid_pub_type.tsv
+    grep -E "2022|2021|2020|2019|2018|2017|2016|2015|2014|2013|2012" eprintid_pub_type.tsv | grep "\tarticle\t" | wc -l
 }
 
 #

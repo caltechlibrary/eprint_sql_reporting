@@ -40,7 +40,7 @@ function build_report() {
 #
 # Main processing
 #
-if [ "$#" != "1" ]; then
+if [ "$#" = "1" ]; then
     usage
     exit 1
 fi
@@ -52,7 +52,10 @@ for ARG in "$@"; do
         ;;
     esac
 done
-
+if [ "$#" != "2" ]; then
+	echo "expected EPrints REPO_ID"
+	exit 1
+fi
 
 build_report "$1"
 

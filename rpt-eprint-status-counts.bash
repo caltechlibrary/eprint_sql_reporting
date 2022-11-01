@@ -32,30 +32,32 @@ EOT
 }
 
 function build_report() {
-    SQL='SELECT eprint_status, COUNT(eprint_status) AS counts  FROM eprint GROUP BY eprint_status ORDER BY eprint_status'
+    SQL='SELECT eprint_status, COUNT(*) AS counts FROM eprint GROUP BY eprint_status ORDER BY eprint_status'
     #echo "Generating a tab separated file"
-    mysql caltechauthors --batch --execute "${SQL}"
+    mysql "$1" --batch --execute "${SQL}"
 }
 
 #
 # Main processing
 #
-if [ "$#" = "1" ]; then
-    usage
-    exit 1
-fi
 for ARG in "$@"; do
     case ARG in
         -h|-help|--help)
         usage
         exit 0
         ;;
+		"$0")
+		# Ignore the app name
+		;;
+		*)
+		REPO_ID="$ARG"
+		;;
     esac
 done
-if [ "$#" != "2" ]; then
+if [ "$REPO_ID" = "" ]; then
+	usage
 	echo "expected a EPrints REPO_ID"
 	exit 1
 fi
-
-build_report "$1"
+build_report "$REPO_ID"
 

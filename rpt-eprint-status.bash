@@ -32,30 +32,32 @@ EOT
 }
 
 function build_report() {
-    SQL='SELECT eprintid, IFNULL(title, "") AS title, IFNULL(doi, "") AS doi, eprint_status FROM eprint ORDER BY eprint_status, eprintid'
+    SQL='SELECT eprintid, IFNULL(title, "") AS title, IFNULL(doi, "") AS doi, username, email, CONCAT(name_family, ", ", name_given) AS name, eprint_status FROM eprint JOIN user ON (eprint.userid = user.userid) ORDER BY eprint_status, eprint.userid, eprintid'
     #echo "Generating a tab separated file"
-    mysql caltechauthors --batch --execute "${SQL}"
+    mysql "$1" --batch --execute "${SQL}"
 }
 
 #
 # Main processing
 #
-if [ "$#" = "1" ]; then
-    usage
-    exit 1
-fi
 for ARG in "$@"; do
     case ARG in
         -h|-help|--help)
         usage
         exit 0
         ;;
+		"$0")
+		# Ignore the app name
+		;;
+		*)
+		REPO_ID="$ARG"
+		;;
     esac
 done
-if [ "$#" != "2" ]; then
+if [ "$REPO_ID" = "" ]; then
+	usage
 	echo "expected EPrints REPO_ID"
 	exit 1
 fi
-
-build_report "$1"
+build_report "$REPO_ID"
 

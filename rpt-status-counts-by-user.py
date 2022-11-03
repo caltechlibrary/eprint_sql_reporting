@@ -78,8 +78,8 @@ def process_tsv(tsv_filename):
                     data[username]['eprint'] = []
                 data[username]['eprint'].append({'eprintid': row['eprintid'], 'eprint_status': row['eprint_status']})
             else:
-                return None, f'missing username at line {i}'
-    return data, ''
+                return None
+    return data
 
 # report takes our dictionary of the aggregated information in your tsv file and
 # renders the report
@@ -125,9 +125,5 @@ if __name__ == '__main__':
         print(f'expected tsv_input_filename and tsv_output_filename, got {" ".join(sys.argv)}', file=os.stderr)
         sys.exit(1)
 
-    data, err = process_tsv(args[0])
-    if err != '':
-        print(f'ERROR: {err}', file=os.stderr)
-        sys.exit(1)
-
+    data = process_tsv(args[0])
     report(args[1], data)

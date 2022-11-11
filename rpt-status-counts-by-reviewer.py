@@ -49,7 +49,7 @@ rpt-eprint-status.bash caltechthesis \\
 # process_tsv is an example of iterating through the tab
 # separated value file one row at a time and then counting
 # things. I am using a dictionary to hold the users and then
-# where the value itself is another map of username, email,
+# where the value itself is another map of reviewer, email,
 # given_name, family_name, eprint_status. The eprint_status
 # element is itself another dictionary holding the status value
 # (e.g. inbox, archive, deletion) pointing at the eprintid having that
@@ -71,12 +71,12 @@ def process_tsv(tsv_filename):
     with open(tsv_filename, newline = '', ) as csvfile:
         reader = csv.DictReader(csvfile, dialect = 'excel-tab')
         for i, row in enumerate(reader):
-            if 'username' in row:
-                username = row['username']
-                if not username in data:
-                    data[username] = { 'email': row['email'], 'name': row['name'], 'userid': row['userid'] }
-                    data[username]['eprint'] = []
-                data[username]['eprint'].append({'eprintid': row['eprintid'], 'eprint_status': row['eprint_status']})
+            if 'reviewer' in row:
+                reviewer = row['reviewer']
+                if not reviewer in data:
+                    data[reviewer] = { 'email': row['email'], 'name': row['name'], 'userid': row['userid'] }
+                    data[reviewer]['eprint'] = []
+                data[reviewer]['eprint'].append({'eprintid': row['eprintid'], 'eprint_status': row['eprint_status']})
             else:
                 return None
     return data
@@ -84,13 +84,13 @@ def process_tsv(tsv_filename):
 # report takes our dictionary of the aggregated information in your tsv file and
 # renders the report
 def report(csv_filename, data):
-    fieldnames =  ["username", "userid", "email", "name", "eprint_status", "count"]
+    fieldnames =  ["reviewer", "userid", "email", "name", "eprint_status", "count"]
     with open(csv_filename, 'w', newline = '') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
         writer.writeheader()
         for key, val in data.items():
             # Setup identifying elements in the row
-            obj = {'username': key, 'email': val['email'], 'name': val['name'], 'userid': val['userid'] }
+            obj = {'reviewer': key, 'email': val['email'], 'name': val['name'], 'userid' : val['userid']}
             # Now run out aggregation
             for status in [ 'NULL', 'archive', 'buffer', 'deletion', 'inbox' ]:
                 # Count each status in the 'items' array

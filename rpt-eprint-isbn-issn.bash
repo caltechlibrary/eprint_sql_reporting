@@ -6,7 +6,7 @@ function usage() {
 cat <<EOT
 % ${APP_NAME}(1) user manual
 % R. S. Doiel
-% 2022-10-26
+% 2022-11-10
 
 # NAME
 
@@ -18,13 +18,13 @@ ${APP_NAME} EPRINT_REPO_ID
 
 # DESCRIPTION
 
-Generate a small table of counts for eprint_status for a given repository
-database.
+Generate a table of eprint record with eprintid, item type, journal
+or book title, isbn, and issn. 
 
 # EXAMPLE
 
 ~~~
-    ${APP_NAME} EPRINT_REPO_ID > eprint_status_counts.tsv
+    ${APP_NAME} EPRINT_REPO_ID > eprint_isbn_issn.tsv
 ~~~
 
 EOT
@@ -32,7 +32,7 @@ EOT
 }
 
 function build_report() {
-    SQL='SELECT eprintid, IFNULL(title, "") AS title, IFNULL(doi, "") AS doi, reviewer, eprint.userid AS userid, username, email, CONCAT(name_family, ", ", name_given) AS name, eprint_status FROM eprint LEFT JOIN user ON (eprint.userid = user.userid) ORDER BY eprint_status, eprint.userid, eprintid'
+    SQL='SELECT eprintid, IFNULL(eprint_status, "") AS eprint_status, IFNULL(type, "") AS eprint_type, IFNULL(title, "") AS title, IFNULL(publication, "") AS journal, IFNULL(publisher, "") AS publisher, IFNULL(book_title, "") book_title, IFNULL(issn, "") AS issn, IFNULL(isbn, "") AS isbn FROM eprint ORDER BY eprint_status, eprint_type, publisher, publication, title'
     #echo "Generating a tab separated file"
     mysql "$1" --batch --execute "${SQL}"
 }

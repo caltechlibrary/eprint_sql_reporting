@@ -42,14 +42,22 @@ for ARG in "$@"; do
     esac
 done
 
-if [ "$#" = "0" ]; then
+case "$#" in
+	"0")
     usage
     exit 1
-fi
-
-REPO_ID="$1"
-SNAPSHOT="$2"
-SQL_FILE="sql-dumps/${REPO_ID}-dump_${SNAPSHOT}.sql.gz"
+	;;
+	"1")
+	REPO_ID="$1"
+	SNAPSHOT="$(date +%Y-%m-%d)"
+	SQL_FILE="sql-dumps/${REPO_ID}-dump_${SNAPSHOT}.sql.gz"
+	;;
+	*)
+	REPO_ID="$1"
+	SNAPSHOT="$2"
+	SQL_FILE="sql-dumps/${REPO_ID}-dump_${SNAPSHOT}.sql.gz"
+	;;
+esac
 
 if [ ! -f "${SQL_FILE}" ]; then
     echo "Can't find ${SQL_FILE}, aborting"

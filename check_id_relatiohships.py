@@ -39,22 +39,15 @@ with open("people.csv", newline = "") as csvfile:
 # Now see if the various ids collide with cl_people_id
 # inappropriately
 
-for key in authors_creator_ids:
-    i = authors_creator_ids[key]
-    #print(f'DEBUG author id {key} row no. {i}') 
-    pos = find_key(cl_people_ids, key)
-    if (pos >= 0) and (pos != i):
-        print(f'{cl_people_ids[pos]} ({pos}) collides author_id {key} ({i - 1})')
+def check_maps(id_map, label):
+    for key in id_map:
+        i = id_map[key]
+        pos = find_key(cl_people_ids, key)
+        if (pos >= 0) and (pos != i):
+            print(f'{pos+2}, {cl_people_ids[pos]}, {label}, {key},  {i+2},  {cl_people_ids[i]}')
 
-for key in thesis_creator_ids:
-    i = thesis_creator_ids[key]
-    pos = find_key(cl_people_ids, key)
-    if (pos >= 0) and (pos != i):
-        print(f'{cl_people_ids[pos]} ({pos}) collides thesis_id {key} ({i - 1})')
-
-for key in thesis_advisor_ids:
-    i = thesis_advisor_ids[key]
-    pos = find_key(cl_people_ids, key)
-    if (pos >= 0) and (pos != i):
-        print(f'{cl_people_ids[pos]} ({pos}) collides advisor_id {key} ({i - 1})')
+print(f'row no., cl_people_id, conflicts with, value, conflicting row no., conflicting cl_people_id')
+check_maps(authors_creator_ids, "authors_id")
+check_maps(thesis_creator_ids, "thesis_id")
+check_maps(thesis_advisor_ids, "advisor_id")
 
